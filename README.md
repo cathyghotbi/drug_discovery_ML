@@ -8,6 +8,113 @@ The workflow follows standard **QSAR (Quantitative Structure–Activity Relation
 
 ---
 
+## Background
+
+This project implements a **machine learning model** to predict **Blood–Brain Barrier (BBB) penetration** of small molecules from their SMILES representations.
+
+The **blood–brain barrier (BBB)** is a highly selective biological barrier that protects the brain by restricting which compounds can pass from the bloodstream into the central nervous system (CNS).
+Accurately predicting BBB penetration is critical in **drug discovery**, especially for:
+
+* CNS drug development (e.g. Alzheimer’s, Parkinson’s, epilepsy)
+* Avoiding unwanted brain side effects for peripheral drugs
+
+The model is trained on the **BBBP dataset** using RDKit-based molecular features and a Random Forest classifier.
+
+---
+
+## What is BBB Penetration?
+
+**BBB penetration (BBBP)** refers to a molecule’s ability to cross the blood–brain barrier.
+
+* **BBB+ (penetrant):** molecule can reach the brain
+* **BBB− (non-penetrant):** molecule is blocked by the BBB
+
+The BBB strongly favors molecules that are:
+
+* Small
+* Moderately lipophilic
+* Low in polarity
+* Capable of forming few hydrogen bonds
+
+---
+
+## Molecular Features Used
+
+Each molecule is featurized using a **combination of structural and physicochemical descriptors**.
+
+### 1. Morgan Fingerprints (ECFP)
+
+* Circular fingerprints capturing molecular substructures
+* Radius = 2
+* 2048-bit binary vector
+* Encodes *what chemical fragments are present*
+
+These features allow the model to learn **structure–activity relationships (SAR)**.
+
+---
+
+### 2. Physicochemical Descriptors
+
+These descriptors encode global molecular properties that are strongly correlated with BBB permeability:
+
+| Feature                      | Description                             | Relevance to BBB                                 |
+| ---------------------------- | --------------------------------------- | ------------------------------------------------ |
+| **Molecular Weight (MolWt)** | Size of the molecule                    | Smaller molecules cross BBB more easily          |
+| **LogP**                     | Lipophilicity (octanol/water partition) | Higher LogP favors membrane crossing             |
+| **TPSA**                     | Topological Polar Surface Area          | Lower TPSA improves BBB penetration              |
+| **HBD**                      | Hydrogen Bond Donors                    | Fewer donors favor BBB crossing                  |
+| **HBA**                      | Hydrogen Bond Acceptors                 | Fewer acceptors favor BBB crossing               |
+| **Rotatable Bonds**          | Molecular flexibility                   | Too much flexibility reduces permeability        |
+| **Ring Count**               | Number of rings                         | Often associated with rigidity and lipophilicity |
+| **Heavy Atom Count**         | Non-hydrogen atoms                      | Proxy for molecular size                         |
+
+---
+
+## Final Feature Vector
+
+For each molecule, the final feature vector is:
+
+```
+[Morgan Fingerprint (2048 bits) | Physicochemical Descriptors (8 floats)]
+```
+
+Total feature dimension:
+
+```
+2056 features per molecule
+```
+
+---
+
+## Model
+
+* **Algorithm:** Random Forest Classifier
+* **Input:** Combined molecular features
+* **Output:** Probability of BBB penetration
+* **Evaluation metric:** ROC-AUC
+
+---
+
+## Notes on Evaluation
+
+The current evaluation script measures performance on the **same dataset used for training**, resulting in an optimistically high ROC-AUC.
+For realistic performance estimation, a **held-out test set or cross-validation** should be used.
+
+---
+
+## Dependencies
+
+* Python
+* RDKit
+* NumPy
+* Pandas
+* scikit-learn
+* joblib
+
+---
+
+
+
 ## 📌 Project Overview
 
 * **Task:** Binary classification (BBB permeable vs non-permeable)
