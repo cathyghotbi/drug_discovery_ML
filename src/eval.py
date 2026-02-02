@@ -3,7 +3,8 @@ import numpy as np
 import joblib
 from sklearn.metrics import roc_auc_score, confusion_matrix
 
-from featurization import smiles_to_morgan
+#from featurization import smiles_to_morgan
+from featurization import smiles_to_features
 
 import os
 
@@ -57,7 +58,8 @@ X = []
 y = []
 
 for smiles, label in zip(df["smiles"], df["p_np"]):
-    fp = smiles_to_morgan(smiles)
+    #fp = smiles_to_morgan(smiles)
+    fp = smiles_to_features(smiles)
     if fp is not None:
         X.append(fp)
         y.append(label)
@@ -93,8 +95,9 @@ print("Confusion Matrix:\n", cm)
 
 
 """
-result of running the file:
-PS C:\Users\Cathy\PycharmProjects\pythonProject1\drug_discovery_ML> python src/eval.py
+result of running the file using only Morgan fingerprint:
+
+# how to run: PS r"Cathy\PycharmProjects\pythonProject1\drug_discovery_ML"> python src/eval.py
 
 
 ROC-AUC: 0.9920888871045448
@@ -123,4 +126,19 @@ That means:
 The model has already “seen” these molecules
 The ROC-AUC is optimistically biased
 A score of 0.99 here does NOT mean real-world performance, it is Training-set performance
+
+
+
+
+result of running the file using only Morgan fingerprint together with physicochemical descriptors:
+
+ROC-AUC: 0.9938319683100476
+Confusion Matrix:
+ [[ 437   42]
+ [   9 1551]]
+
+True negatives: 437
+False positives: 42
+False negatives: 9
+True positives: 1551
 """
