@@ -352,8 +352,14 @@ https://blog.dnanexus.com/hs-fs/hubfs/Imported_Blog_Media/Morgan-Algorithm-1024x
 
 ---
 
-screen shot of result:
+result of trainig with Morgan fingerprint:
+
 <img width="320" height="89" alt="{FE51FC70-6EBC-4F60-9F8E-3DC3161542E3}" src="https://github.com/user-attachments/assets/493804c3-d8f8-4fb0-839c-5a6ecebf09ac" />
+
+result of trainig with Morgan fingerprint together with physicochemical descriptors:
+
+<img width="144" height="58" alt="{1F2376BF-B177-499A-8247-C280D4C2C11E}" src="https://github.com/user-attachments/assets/f78d7906-4c93-41d1-8c90-3fcfde1b372a" />
+
 
 
 
