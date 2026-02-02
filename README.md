@@ -239,6 +239,12 @@ I asked AI to help me start learning python and machine learning in drug discove
 ---
 
 
+## References:
+Morgan fingerprint: to represent chemical molecules as a binary or counter vector of fixed lengthIt encodes the structure of a molecule based on the local environments of the atom
+https://blog.dnanexus.com/hs-fs/hubfs/Imported_Blog_Media/Morgan-Algorithm-1024x653.png?width=1024&height=653&name=Morgan-Algorithm-1024x653.png
+
+---
+
 screen shot of result:
 <img width="320" height="89" alt="{FE51FC70-6EBC-4F60-9F8E-3DC3161542E3}" src="https://github.com/user-attachments/assets/493804c3-d8f8-4fb0-839c-5a6ecebf09ac" />
 
