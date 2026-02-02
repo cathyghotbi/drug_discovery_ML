@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
-from featurization import smiles_to_morgan
+#from featurization import smiles_to_morgan
+from featurization import smiles_to_features
 
 # how to run: PS C:\Users\Cathy\PycharmProjects\pythonProject1\drug_discovery_ML> python src/train.py
 
@@ -22,7 +23,8 @@ X = []
 y = []
 
 for smiles, label in zip(df["smiles"], df["p_np"]):
-    fp = smiles_to_morgan(smiles)
+    #fp = smiles_to_morgan(smiles)
+    fp = smiles_to_features(smiles)
     if fp is not None:
         X.append(fp)
         y.append(label)
