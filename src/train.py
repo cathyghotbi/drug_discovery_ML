@@ -1,5 +1,6 @@
 # ==========================================================
 # train.py
+# how to run: PS C:\Users\Cathy\PycharmProjects\pythonProject1\drug_discovery_ML> python src/train_old.py
 # ==========================================================
 """
 Research-Grade QSAR Training Pipeline for BBBP Prediction
@@ -244,3 +245,8 @@ np.savez(TEST_PATH, X_test=X_test, y_test=y_test)
 print("Training complete.")
 print("Model saved to:", MODEL_PATH)
 print("Test set saved to:", TEST_PATH)
+
+# Output:
+# Cross-Validation ROC-AUC (mean): 0.905951260798971
+# Cross-Validation ROC-AUC (std): 0.014198717520972449
+
