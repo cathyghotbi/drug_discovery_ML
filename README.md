@@ -95,13 +95,6 @@ Total feature dimension:
 
 ---
 
-## Notes on Evaluation
-
-The current evaluation script measures performance on the **same dataset used for training**, resulting in an optimistically high ROC-AUC.
-For realistic performance estimation, a **held-out test set or cross-validation** should be used.
-
----
-
 ## Dependencies
 
 * Python
@@ -230,7 +223,7 @@ All commands should be run **from the project root**.
 
 ---
 
-### ▶️ Train the model
+### ▶️ Training the model (train.py)
 
 ```bash
 python -m src.train
@@ -239,12 +232,21 @@ python -m src.train
 This step:
 
 * Loads the BBBP dataset
-* Converts SMILES to Morgan fingerprints
+* Convert SMILES → 2056-length feature vectors (2048 Morgan + 8 descriptors).
 * Trains a Random Forest classifier
+* Split dataset:
+** Training: 64%
+** Validation: 16%
+** Held-out Test: 20%
+* Perform 5-fold cross-validation on training set.
+* Train on training set and evaluate on validation set.
+* Retrain on full training+validation set.
 * Saves the trained model to:
 
   ```
   results/rf_bbbp_model.pkl
+  Trained model → results/rf_bbbp_model.pkl
+  Held-out test set → results/test_set.npz (⚠️ The held-out test set is created only here. Never regenerate it in eval.py.)
   ```
 
 ---
@@ -257,11 +259,25 @@ python -m src.eval
 
 This step:
 
-* Loads the trained model
-* Recomputes molecular fingerprints
+* Load the trained Random Forest model (rf_bbbp_model.pkl).
+* Load held-out test set (test_set.npz).
+* Predict BBB permeability probabilities.
+* Compute metrics:
+** ROC-AUC — ranking quality
+** Confusion matrix — classification errors
 * Reports ROC-AUC and confusion matrix
 
-**Example output:**
+**Recent Example output with separated train ans test data :**
+```
+Final Test ROC-AUC: 0.94
+Confusion Matrix:
+[[ 62  34]
+ [  7 305]]
+```
+✅ Evaluation is strictly on held-out test set to avoid data leakage.
+
+
+**Previous Example output with training and evaluating on the same :**
 
 ```
 ROC-AUC: 0.99
