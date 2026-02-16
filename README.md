@@ -368,7 +368,16 @@ https://blog.dnanexus.com/hs-fs/hubfs/Imported_Blog_Media/Morgan-Algorithm-1024x
 
 ---
 
-result of trainig with Morgan fingerprint:
+Recent result of trainig with splitted train and test data set:
+
+<img width="287" height="79" alt="{91B10DE9-B3BC-4DBA-85C4-E96FD2178026}" src="https://github.com/user-attachments/assets/d8612f5d-c338-4784-b8d3-08bb02a4ee72" />
+
+
+<img width="224" height="82" alt="{75597C33-296C-45BE-A14E-EFAC86A34E28}" src="https://github.com/user-attachments/assets/242f488b-6e28-4800-b898-3f7ef0f52102" />
+
+
+
+Previous result of trainig with Morgan fingerprint:
 
 <img width="320" height="89" alt="{FE51FC70-6EBC-4F60-9F8E-3DC3161542E3}" src="https://github.com/user-attachments/assets/493804c3-d8f8-4fb0-839c-5a6ecebf09ac" />
 
