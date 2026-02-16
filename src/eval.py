@@ -153,7 +153,16 @@ Notes:
 """
 
 
-# Output:
+# Output after training with separated data set and fingerprints + descriptors:
+# =================================
+# Final Test ROC-AUC: 0.9427918002136753
+# Confusion Matrix:
+#  [[ 61  35]
+#  [  6 306]]
+# =================================
+
+
+# Output after training with separated data set only:
 # =================================
 # Final Test ROC-AUC: 0.9420572916666666
 # Confusion Matrix:
