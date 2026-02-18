@@ -313,9 +313,9 @@ Confusion Matrix:
 
 ## 🔬 Current Limitations
 
-* Evaluation on training data only (optimistic performance)
+* Evaluation on training data only (optimistic performance) > fixed in later version
 * No external test set
-* No cross-validation
+* No cross-validation > fixed in later version
 * Limited model interpretability analysis
 
 These limitations are intentional at this stage and will be addressed in future updates.
